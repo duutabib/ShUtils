@@ -20,7 +20,7 @@ search_results=$CMD
 
 
 # get each entry in results 
-for entry in "$search_results"
+for entry in search_results
 do
 	echo "$entry"
 done
