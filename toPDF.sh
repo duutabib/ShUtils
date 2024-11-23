@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Assign second argument as destination 
+# Assign second argument as search dir
 EXTENSION=${1:-"epub"}
 SEARCH_DIR=${2:-"."}
 OUTPUT_DIR=${3:-"/tmp"}
