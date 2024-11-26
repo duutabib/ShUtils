@@ -2,7 +2,7 @@
 
 # Assign second argument as search dir
 EXTENSION=${1:-"epub"} 			# default to 'epub' if no extension exist
-SEARCH_DIR=${2:-"."}			# default to curr dir 
+TARGET_DIR=${2:-"."}			# default to curr dir 
 OUTPUT_DIR=${3:-"/tmp"}			# default to tmp dir
 LOG_FILE="${OUTPUT_DIR}/conversion.log"
 ERROR_LOG="${OUTPUT_DIR}/error.log"
@@ -18,10 +18,10 @@ echo "Conversion started at $(date)" > "$LOG_FILE"
 echo "Conversion errors at $(date)" > "$ERROR_LOG"
 
 # Get file of type
-echo "Searching for $EXTENSION files in $SEARCH_DIR"
+echo "Watching for $EXTENSION files in $TARGET_DIR"
 
 # search for files and convert to PDF
-fswatch "$SEARCH_DIR" -e ".*" -i "\\.$EXTENSION$" | xargs -I '{}' sh -c'
+fswatch "$TARGET_DIR" -e ".*" -i "\\.$EXTENSION$" | xargs -I '{}' sh -c'
 if ebook-convert "$1" "$2/{.}.pdf";then
 	echo "$(date): Converted $1 to $2/{.}.pdf" >> "$3";
 else
