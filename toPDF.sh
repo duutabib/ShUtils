@@ -21,9 +21,8 @@ echo "Conversion errors at $(date)" > "$ERROR_LOG"
 echo "Searching for $EXTENSION files in $SEARCH_DIR"
 
 # search for files and convert to PDF
-fd -e "$EXTENSION" -t f -p "$SEARCH_DIR" -x sh -c '
-
-if ebook-convert {} "$OUTPUT_DIR/{.}.pdf";then
+fd -e "$EXTENSION" -p "$SEARCH_DIR" -x sh -c '
+if ebook-convert "$1" "$2/{.}.pdf";then
 	echo "$(date): Converted $1 to $2/{.}.pdf" >> "$3";
 else
 	echo "$(date): Failed to convert $1" >> "$4";
